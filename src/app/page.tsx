@@ -1,6 +1,7 @@
 import { getEntries, getOpportunities } from "@/lib/data";
 import { Board } from "@/components/Board";
 import { MuLogo } from "@/components/MuLogo";
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const [entries, opportunities] = await Promise.all([getEntries(), getOpportunities()]);
