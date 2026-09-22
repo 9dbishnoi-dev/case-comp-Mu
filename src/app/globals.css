@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* MU theme: near-black paper, warm brass accent (matches mastersunion.org) */
+:root {
+  --color-paper: #0a0a0b;
+  --color-panel: #17171a;
+  --color-panel-hover: #1e1e22;
+  --color-ink: #f5f4f1;
+  --color-ink-soft: #9c9b96;
+  --color-ink-faint: #6b6a66;
+  --color-brass: #d9a441;
+  --color-brass-deep: #e8b657;
+  --color-teal: #4fb3a0;
+  --color-rust: #e08560;
+  --color-hairline: #26262a;
+}
+
+@theme inline {
+  --color-paper: var(--color-paper);
+  --color-panel: var(--color-panel);
+  --color-panel-hover: var(--color-panel-hover);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-brass: var(--color-brass);
+  --color-brass-deep: var(--color-brass-deep);
+  --color-teal: var(--color-teal);
+  --color-rust: var(--color-rust);
+  --color-hairline: var(--color-hairline);
+  --font-display: var(--font-body);
+  --font-body: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+}
+
+.font-display {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Custom checkbox: brass-filled square instead of raw browser input */
+.mu-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-hairline);
+  border-radius: 3px;
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.mu-checkbox:hover {
+  border-color: var(--color-ink-faint);
+}
+.mu-checkbox:checked {
+  background: var(--color-teal);
+  border-color: var(--color-teal);
+}
+.mu-checkbox:checked::after {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-paper);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@keyframes mu-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mu-fade-up {
+  animation: mu-fade-up 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mu-fade-up {
+    animation: none;
+  }
+}
