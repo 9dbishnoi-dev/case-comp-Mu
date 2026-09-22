@@ -27,7 +27,7 @@ export default async function AdminOpportunitiesPage() {
           <h1 className="font-display text-2xl text-ink">Opportunities</h1>
           <div className="flex items-center gap-3">
             <Link href="/admin" className="text-sm text-ink-soft hover:text-ink">← Admin home</Link>
-            <Link href="/admin/opportunities/new" className="bg-teal px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-teal/90">
+            <Link href="/admin/opportunities/new" className="bg-brass px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-brass/90">
               Add opportunity
             </Link>
           </div>

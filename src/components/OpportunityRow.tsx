@@ -45,7 +45,7 @@ export function OpportunityRow({ opportunity }: { opportunity: CaseOpportunity }
             href={opportunity.applyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto inline-flex items-center gap-1 bg-teal px-3 py-1.5 text-xs font-semibold text-paper transition-colors hover:bg-teal/90"
+            className="ml-auto inline-flex items-center gap-1 bg-brass px-3 py-1.5 text-xs font-semibold text-paper transition-colors hover:bg-brass/90"
           >
             Apply now ↗
           </a>

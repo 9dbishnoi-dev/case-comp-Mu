@@ -1,10 +1,19 @@
-import { getEntries, getOpportunities } from "@/lib/data";
+import { getEntries, getOpportunities, getCompetitions } from "@/lib/data";
 import { Board } from "@/components/Board";
 import { MuLogo } from "@/components/MuLogo";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [entries, opportunities] = await Promise.all([getEntries(), getOpportunities()]);
+  const [entries, opportunities, competitions] = await Promise.all([
+    getEntries(),
+    getOpportunities(),
+    getCompetitions(),
+  ]);
+
+  const competitionIdByKey: Record<string, string> = {};
+  for (const c of competitions) {
+    competitionIdByKey[`${c.challengeName.toLowerCase()}|${c.host.toLowerCase()}`] = c.id;
+  }
 
   const wins = entries.filter((e) => e.rank === 1).length;
   const podiums = entries.filter((e) => e.rank && e.rank <= 3).length;
@@ -42,7 +51,7 @@ export default async function Home() {
                 <dt className="text-[13px] uppercase tracking-wide text-ink-faint">
                   {stat.label}
                 </dt>
-                <dd className="mt-1 font-display text-2xl text-teal md:text-3xl">
+                <dd className="mt-1 font-display text-2xl text-brass-deep md:text-3xl">
                   {stat.value}
                 </dd>
               </div>
@@ -52,7 +61,7 @@ export default async function Home() {
       </div>
 
       <div className="pt-6 md:pt-10">
-        <Board entries={entries} opportunities={opportunities} />
+        <Board entries={entries} opportunities={opportunities} competitionIdByKey={competitionIdByKey} />
       </div>
     </main>
   );

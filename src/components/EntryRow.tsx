@@ -1,9 +1,9 @@
+import Link from "next/link";
 import type { CaseEntry } from "@/lib/types";
 import { RankBadge } from "./RankBadge";
 
-export function EntryRow({ entry }: { entry: CaseEntry }) {
+export function EntryRow({ entry, competitionId }: { entry: CaseEntry; competitionId?: string }) {
   const links = [
-    { label: "Problem statement", href: entry.problemStatementUrl },
     { label: "Solution deck", href: entry.solutionDeckUrl },
     { label: "Photos", href: entry.photosUrl },
   ].filter((l) => l.href);
@@ -19,7 +19,18 @@ export function EntryRow({ entry }: { entry: CaseEntry }) {
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 className="font-display text-lg text-ink">{entry.challengeName}</h3>
+            <h3 className="font-display text-lg text-ink">
+              {competitionId ? (
+                <Link
+                  href={`/competition/${competitionId}`}
+                  className="hover:text-brass-deep hover:underline"
+                >
+                  {entry.challengeName}
+                </Link>
+              ) : (
+                entry.challengeName
+              )}
+            </h3>
             {entry.positionLabel && (
               <span className="inline-flex items-center border border-brass/50 px-2 py-0.5 text-xs font-medium text-brass">
                 {entry.positionLabel}
@@ -48,7 +59,7 @@ export function EntryRow({ entry }: { entry: CaseEntry }) {
                 href={l.href!}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+                className="text-xs text-brass-deep underline decoration-brass-deep/40 underline-offset-4 hover:decoration-brass-deep"
               >
                 {l.label} ↗
               </a>

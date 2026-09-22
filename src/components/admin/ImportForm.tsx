@@ -20,7 +20,7 @@ export function ImportForm() {
   return (
     <main className="flex-1">
       <div className="mx-auto max-w-2xl px-6 py-14 md:px-8">
-        <Link href="/admin/entries" className="text-sm text-ink-soft underline decoration-hairline underline-offset-4 hover:text-ink hover:decoration-teal">
+        <Link href="/admin/entries" className="text-sm text-ink-soft underline decoration-hairline underline-offset-4 hover:text-ink hover:decoration-brass-deep">
           Back to entries
         </Link>
 
@@ -42,12 +42,12 @@ export function ImportForm() {
             name="file"
             accept=".csv,text/csv"
             required
-            className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink file:mr-4 file:border-0 file:bg-teal file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-paper"
+            className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink file:mr-4 file:border-0 file:bg-brass file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-paper"
           />
           <button
             type="submit"
             disabled={isPending}
-            className="self-start bg-teal px-4 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-teal/90 disabled:opacity-60"
+            className="self-start bg-brass px-4 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-brass/90 disabled:opacity-60"
           >
             {isPending ? "Importing…" : "Import"}
           </button>

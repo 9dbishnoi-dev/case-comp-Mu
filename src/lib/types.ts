@@ -6,7 +6,6 @@ export interface CaseEntry {
   members: string[];
   rank: number | null;
   positionLabel: string | null;
-  problemStatementUrl: string | null;
   solutionDeckUrl: string | null;
   photosUrl: string | null;
   cohort: string;
@@ -14,6 +13,14 @@ export interface CaseEntry {
 }
 
 export type OpportunityStatus = "Open" | "Closing soon" | "Closed";
+
+export interface CaseCompetition {
+  id: string;
+  challengeName: string;
+  host: string;
+  aboutUrl: string | null;
+  description: string | null;
+}
 
 export interface CaseOpportunity {
   id: string;

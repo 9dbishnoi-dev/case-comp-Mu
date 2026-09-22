@@ -18,9 +18,11 @@ function toggle(set: Set<string>, value: string): Set<string> {
 export function Board({
   entries,
   opportunities,
+  competitionIdByKey = {},
 }: {
   entries: CaseEntry[];
   opportunities: CaseOpportunity[];
+  competitionIdByKey?: Record<string, string>;
 }) {
   const [tab, setTab] = useState<Tab>("wins");
   const [query, setQuery] = useState("");
@@ -83,7 +85,7 @@ export function Board({
         <FilterGroup label="Host" options={hostOptions} selected={hosts} onToggle={(v) => setHosts((s) => toggle(s, v))} />
         <FilterGroup label="Result" options={positionOptions} selected={positions} onToggle={(v) => setPositions((s) => toggle(s, v))} />
         {activeFilterCount > 0 && (
-          <button onClick={clearFilters} className="self-start text-sm text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal">
+          <button onClick={clearFilters} className="self-start text-sm text-brass-deep underline decoration-brass-deep/40 underline-offset-4 hover:decoration-brass-deep">
             Clear filters
           </button>
         )}
@@ -92,7 +94,7 @@ export function Board({
       <div className="flex flex-col gap-8">
         <FilterGroup label="Status" options={statusOptions} selected={statuses} onToggle={(v) => setStatuses((s) => toggle(s, v))} />
         {activeFilterCount > 0 && (
-          <button onClick={clearFilters} className="self-start text-sm text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal">
+          <button onClick={clearFilters} className="self-start text-sm text-brass-deep underline decoration-brass-deep/40 underline-offset-4 hover:decoration-brass-deep">
             Clear filters
           </button>
         )}
@@ -119,7 +121,7 @@ export function Board({
               onClick={() => setTab(t.key)}
               className={`px-4 py-3 text-sm font-medium transition-colors ${
                 tab === t.key
-                  ? "border-b-2 border-teal text-ink"
+                  ? "border-b-2 border-brass-deep text-ink"
                   : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -135,7 +137,7 @@ export function Board({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={tab === "wins" ? "Search by challenge, host or team" : "Search by name or host"}
-              className="w-full flex-1 border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint transition-colors focus:border-teal focus:outline-none"
+              className="w-full flex-1 border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint transition-colors focus:border-brass focus:outline-none"
             />
             <button
               onClick={() => setFiltersOpen(true)}
@@ -143,7 +145,7 @@ export function Board({
             >
               Filters
               {activeFilterCount > 0 && (
-                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-teal px-1 text-xs font-semibold text-paper">
+                <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brass px-1 text-xs font-semibold text-paper">
                   {activeFilterCount}
                 </span>
               )}
@@ -162,7 +164,11 @@ export function Board({
           ) : (
             <div className="mu-fade-up">
               {filteredEntries.map((e) => (
-                <EntryRow key={e.id} entry={e} />
+                <EntryRow
+                  key={e.id}
+                  entry={e}
+                  competitionId={competitionIdByKey[`${e.challengeName.toLowerCase()}|${e.host.toLowerCase()}`]}
+                />
               ))}
             </div>
           )

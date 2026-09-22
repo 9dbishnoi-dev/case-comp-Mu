@@ -10,7 +10,6 @@ export interface EntryRecord {
   members: string[];
   rank: number | null;
   position_label: string | null;
-  problem_statement_url: string | null;
   solution_deck_url: string | null;
   photos_url: string | null;
   cohort: string;

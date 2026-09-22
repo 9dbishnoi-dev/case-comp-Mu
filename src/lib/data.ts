@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { CaseEntry, CaseOpportunity } from "./types";
+import type { CaseEntry, CaseOpportunity, CaseCompetition } from "./types";
 
 /**
  * Public read-only Supabase client (anon key). case_entries/case_opportunities
@@ -35,7 +35,6 @@ export async function getEntries(): Promise<CaseEntry[]> {
     members: row.members ?? [],
     rank: row.rank,
     positionLabel: row.position_label,
-    problemStatementUrl: row.problem_statement_url,
     solutionDeckUrl: row.solution_deck_url,
     photosUrl: row.photos_url,
     cohort: row.cohort,
@@ -66,4 +65,48 @@ export async function getOpportunities(): Promise<CaseOpportunity[]> {
     status: row.status,
     notes: row.notes,
   }));
+}
+
+export async function getCompetitions(): Promise<CaseCompetition[]> {
+  const supabase = getSupabasePublic();
+  const { data, error } = await supabase
+    .from("case_competitions")
+    .select("*")
+    .order("challenge_name", { ascending: true });
+
+  if (error) {
+    console.error("Failed to load case_competitions from Supabase:", error.message);
+    return [];
+  }
+
+  return (data ?? []).map((row): CaseCompetition => ({
+    id: row.id,
+    challengeName: row.challenge_name,
+    host: row.host,
+    aboutUrl: row.about_url,
+    description: row.description,
+  }));
+}
+
+export async function getCompetitionByName(
+  challengeName: string,
+  host: string,
+): Promise<CaseCompetition | null> {
+  const supabase = getSupabasePublic();
+  const { data, error } = await supabase
+    .from("case_competitions")
+    .select("*")
+    .eq("challenge_name", challengeName)
+    .eq("host", host)
+    .maybeSingle();
+
+  if (error || !data) return null;
+
+  return {
+    id: data.id,
+    challengeName: data.challenge_name,
+    host: data.host,
+    aboutUrl: data.about_url,
+    description: data.description,
+  };
 }

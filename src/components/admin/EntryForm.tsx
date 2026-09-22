@@ -24,7 +24,6 @@ export function EntryForm({
         <Field label="Rank (number, blank if none)" name="rank" type="number" defaultValue={entry?.rank ?? ""} />
         <Field label="Position label (e.g. 1st Place)" name="position_label" defaultValue={entry?.position_label ?? ""} />
       </div>
-      <Field label="Problem statement URL" name="problem_statement_url" defaultValue={entry?.problem_statement_url ?? ""} />
       <Field label="Solution deck URL" name="solution_deck_url" defaultValue={entry?.solution_deck_url ?? ""} />
       <Field label="Photos URL" name="photos_url" defaultValue={entry?.photos_url ?? ""} />
       <Field label="Cohort" name="cohort" defaultValue={entry?.cohort ?? "C6"} />
@@ -48,7 +47,7 @@ function Field({
         name={name}
         defaultValue={defaultValue ?? ""}
         required={required}
-        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-brass focus:outline-none"
       />
     </label>
   );
@@ -62,7 +61,7 @@ function Textarea({ label, name, defaultValue }: { label: string; name: string; 
         name={name}
         defaultValue={defaultValue}
         rows={3}
-        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-brass focus:outline-none"
       />
     </label>
   );

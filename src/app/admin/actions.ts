@@ -35,7 +35,6 @@ export async function saveEntryAction(id: string | null, formData: FormData) {
     members: splitLines(str(formData, "members")),
     rank: rank ? Number(rank) : null,
     position_label: str(formData, "position_label"),
-    problem_statement_url: str(formData, "problem_statement_url"),
     solution_deck_url: str(formData, "solution_deck_url"),
     photos_url: str(formData, "photos_url"),
     cohort: str(formData, "cohort") ?? "C6",

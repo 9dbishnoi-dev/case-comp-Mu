@@ -28,11 +28,11 @@ export default async function AdminPage() {
         <h1 className="font-display text-2xl text-ink">Case Competitions admin</h1>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <Link href="/admin/entries" className="border border-hairline p-6 transition-colors hover:border-teal">
+          <Link href="/admin/entries" className="border border-hairline p-6 transition-colors hover:border-brass-deep">
             <p className="font-display text-lg text-ink">Entries &amp; results</p>
             <p className="mt-1 text-sm text-ink-soft">{entries.length} logged · past competitions MU has entered</p>
           </Link>
-          <Link href="/admin/opportunities" className="border border-hairline p-6 transition-colors hover:border-teal">
+          <Link href="/admin/opportunities" className="border border-hairline p-6 transition-colors hover:border-brass-deep">
             <p className="font-display text-lg text-ink">Opportunities</p>
             <p className="mt-1 text-sm text-ink-soft">{openCount} open of {opportunities.length} · upcoming, eligible to apply</p>
           </Link>

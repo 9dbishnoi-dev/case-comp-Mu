@@ -24,7 +24,7 @@ export function OpportunityForm({
           <select
             name="status"
             defaultValue={opportunity?.status ?? "Open"}
-            className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink focus:border-teal focus:outline-none"
+            className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink focus:border-brass focus:outline-none"
           >
             {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
           </select>
@@ -49,7 +49,7 @@ function Field({
         name={name}
         defaultValue={defaultValue ?? ""}
         required={required}
-        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-brass focus:outline-none"
       />
     </label>
   );
@@ -63,7 +63,7 @@ function Textarea({ label, name, defaultValue }: { label: string; name: string; 
         name={name}
         defaultValue={defaultValue}
         rows={3}
-        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+        className="border border-hairline bg-panel px-3 py-2.5 text-[15px] text-ink placeholder:text-ink-faint focus:border-brass focus:outline-none"
       />
     </label>
   );
